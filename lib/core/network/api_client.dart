@@ -12,11 +12,8 @@ class ApiClient {
 
   String get baseUrl {
 
-    if (kDebugMode) {
-      return 'http://192.168.56.1:37128/api';
-    }
+    return 'http://ec2-3-17-175-90.us-east-2.compute.amazonaws.com/api/';
 
-    return 'production url';
   }
 
   Future<Response> request(

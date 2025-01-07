@@ -12,17 +12,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   final _loginFormKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final AuthService _authService = AuthService(
     secureStorage: const FlutterSecureStorage(),
     apiClient: ApiClient.instance,
-  );  
+  );
   String _selectedRole = 'Fan';
-
 
   @override
   void dispose() {
@@ -33,13 +30,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     // methods
     String? validateEmail(String? value) {
-      
-      
-      if (value == Null ||  value == ''){
+      if (value == Null || value == '') {
         return 'Ingrese un mail';
       }
 
@@ -54,26 +47,27 @@ class _LoginPageState extends State<LoginPage> {
 
       return value!.isEmpty || !regex.hasMatch(value)
           ? 'Ingresa un email valido'
-          : null ;
+          : null;
     }
 
-     Future<void> _performLogin() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Logging in...')),
-    );
-    try {
-      await _authService.loginUser(
-        Login(email: _emailController.text, password: _passwordController.text, role: _selectedRole)
-      );
+    Future<void> _performLogin() async {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful')),
+        const SnackBar(content: Text('Logging in...')),
       );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: $e')),
-      );
+      try {
+        await _authService.loginUser(Login(
+            email: _emailController.text,
+            password: _passwordController.text,
+            role: _selectedRole));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login successful')),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login failed: $e')),
+        );
+      }
     }
-  }
 
     // return
     return Padding(
@@ -85,14 +79,13 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             SizedBox(
               child: TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) => validateEmail(value)
-              ),
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) => validateEmail(value)),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -159,4 +152,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
