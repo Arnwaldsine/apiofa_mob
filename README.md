@@ -1,16 +1,10 @@
-# apiofa_mob
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# APP MOBILE CONTENIDO
+## Como correr la aplicación:
+### 1. Clonar el repositorio
+### 2. Ctrl+shift+p (en VS Code) Select Device (Necesitas Android Studio para configurar un dispositivo virtual o tener activada la depuración USB en las herramientas de desarrollador de tu teléfono si tenés Android y conectarlo a la computadora para poder elegirlo).
+### 3. Correr en powershell o Terminal preferida:
+1.  `flutter pub get`
+2.  `flutter pub outdated`
+3.  `flutter doctor`
+4.  `flutter run`
+  
